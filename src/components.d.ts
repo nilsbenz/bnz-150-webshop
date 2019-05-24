@@ -9,69 +9,75 @@ import '@stencil/core';
 
 import '@stencil/router';
 import '@stencil/state-tunnel';
-import {
-  MatchResults,
-} from '@stencil/router';
 
 
 export namespace Components {
 
-  interface AppHome {}
-  interface AppHomeAttributes extends StencilHTMLAttributes {}
+  interface WsHome {}
+  interface WsHomeAttributes extends StencilHTMLAttributes {}
 
-  interface AppProfile {
-    'match': MatchResults;
-  }
-  interface AppProfileAttributes extends StencilHTMLAttributes {
-    'match'?: MatchResults;
-  }
+  interface WsHeader {}
+  interface WsHeaderAttributes extends StencilHTMLAttributes {}
 
-  interface AppRoot {}
-  interface AppRootAttributes extends StencilHTMLAttributes {}
+  interface WsNav {}
+  interface WsNavAttributes extends StencilHTMLAttributes {}
+
+  interface WsRoot {}
+  interface WsRootAttributes extends StencilHTMLAttributes {}
 }
 
 declare global {
   interface StencilElementInterfaces {
-    'AppHome': Components.AppHome;
-    'AppProfile': Components.AppProfile;
-    'AppRoot': Components.AppRoot;
+    'WsHome': Components.WsHome;
+    'WsHeader': Components.WsHeader;
+    'WsNav': Components.WsNav;
+    'WsRoot': Components.WsRoot;
   }
 
   interface StencilIntrinsicElements {
-    'app-home': Components.AppHomeAttributes;
-    'app-profile': Components.AppProfileAttributes;
-    'app-root': Components.AppRootAttributes;
+    'ws-home': Components.WsHomeAttributes;
+    'ws-header': Components.WsHeaderAttributes;
+    'ws-nav': Components.WsNavAttributes;
+    'ws-root': Components.WsRootAttributes;
   }
 
 
-  interface HTMLAppHomeElement extends Components.AppHome, HTMLStencilElement {}
-  var HTMLAppHomeElement: {
-    prototype: HTMLAppHomeElement;
-    new (): HTMLAppHomeElement;
+  interface HTMLWsHomeElement extends Components.WsHome, HTMLStencilElement {}
+  var HTMLWsHomeElement: {
+    prototype: HTMLWsHomeElement;
+    new (): HTMLWsHomeElement;
   };
 
-  interface HTMLAppProfileElement extends Components.AppProfile, HTMLStencilElement {}
-  var HTMLAppProfileElement: {
-    prototype: HTMLAppProfileElement;
-    new (): HTMLAppProfileElement;
+  interface HTMLWsHeaderElement extends Components.WsHeader, HTMLStencilElement {}
+  var HTMLWsHeaderElement: {
+    prototype: HTMLWsHeaderElement;
+    new (): HTMLWsHeaderElement;
   };
 
-  interface HTMLAppRootElement extends Components.AppRoot, HTMLStencilElement {}
-  var HTMLAppRootElement: {
-    prototype: HTMLAppRootElement;
-    new (): HTMLAppRootElement;
+  interface HTMLWsNavElement extends Components.WsNav, HTMLStencilElement {}
+  var HTMLWsNavElement: {
+    prototype: HTMLWsNavElement;
+    new (): HTMLWsNavElement;
+  };
+
+  interface HTMLWsRootElement extends Components.WsRoot, HTMLStencilElement {}
+  var HTMLWsRootElement: {
+    prototype: HTMLWsRootElement;
+    new (): HTMLWsRootElement;
   };
 
   interface HTMLElementTagNameMap {
-    'app-home': HTMLAppHomeElement
-    'app-profile': HTMLAppProfileElement
-    'app-root': HTMLAppRootElement
+    'ws-home': HTMLWsHomeElement
+    'ws-header': HTMLWsHeaderElement
+    'ws-nav': HTMLWsNavElement
+    'ws-root': HTMLWsRootElement
   }
 
   interface ElementTagNameMap {
-    'app-home': HTMLAppHomeElement;
-    'app-profile': HTMLAppProfileElement;
-    'app-root': HTMLAppRootElement;
+    'ws-home': HTMLWsHomeElement;
+    'ws-header': HTMLWsHeaderElement;
+    'ws-nav': HTMLWsNavElement;
+    'ws-root': HTMLWsRootElement;
   }
 
 
