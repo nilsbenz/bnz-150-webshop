@@ -12,10 +12,10 @@ export class WsNav {
     return (
       <nav>
         <ul>
-          <li><stencil-route-link url='/'>Home</stencil-route-link></li>
-          <li><stencil-route-link url='/videos'>Videos</stencil-route-link></li>
-          <li><stencil-route-link url='/fotos'>Fotos</stencil-route-link></li>
-          <li><stencil-route-link url='/kontakt'>Kontakt</stencil-route-link></li>
+          <li><p><stencil-route-link url='/'>Home</stencil-route-link></p></li>
+          <li><p><stencil-route-link url='/videos'>Videos</stencil-route-link></p></li>
+          <li><p><stencil-route-link url='/fotos'>Fotos</stencil-route-link></p></li>
+          <li><p><stencil-route-link url='/kontakt'>Kontakt</stencil-route-link></p></li>
         </ul>
       </nav>
     );

@@ -10,7 +10,7 @@ export class WsRoot {
 
   render() {
     return (
-      <div>
+      <div class="ws-root">
         <ws-header/>
         <ws-nav/>
         <main>

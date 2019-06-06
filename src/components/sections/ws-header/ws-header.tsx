@@ -11,7 +11,7 @@ export class WsHeader {
   render() {
     return (
         <header>
-          <h1>Stencil App Starter</h1>
+          <h1>Nils Benz</h1>
         </header>
     );
   }

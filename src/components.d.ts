@@ -13,6 +13,13 @@ import '@stencil/state-tunnel';
 
 export namespace Components {
 
+  interface WsFigure {
+    'source': String;
+  }
+  interface WsFigureAttributes extends StencilHTMLAttributes {
+    'source'?: String;
+  }
+
   interface WsHome {}
   interface WsHomeAttributes extends StencilHTMLAttributes {}
 
@@ -28,6 +35,7 @@ export namespace Components {
 
 declare global {
   interface StencilElementInterfaces {
+    'WsFigure': Components.WsFigure;
     'WsHome': Components.WsHome;
     'WsHeader': Components.WsHeader;
     'WsNav': Components.WsNav;
@@ -35,12 +43,19 @@ declare global {
   }
 
   interface StencilIntrinsicElements {
+    'ws-figure': Components.WsFigureAttributes;
     'ws-home': Components.WsHomeAttributes;
     'ws-header': Components.WsHeaderAttributes;
     'ws-nav': Components.WsNavAttributes;
     'ws-root': Components.WsRootAttributes;
   }
 
+
+  interface HTMLWsFigureElement extends Components.WsFigure, HTMLStencilElement {}
+  var HTMLWsFigureElement: {
+    prototype: HTMLWsFigureElement;
+    new (): HTMLWsFigureElement;
+  };
 
   interface HTMLWsHomeElement extends Components.WsHome, HTMLStencilElement {}
   var HTMLWsHomeElement: {
@@ -67,6 +82,7 @@ declare global {
   };
 
   interface HTMLElementTagNameMap {
+    'ws-figure': HTMLWsFigureElement
     'ws-home': HTMLWsHomeElement
     'ws-header': HTMLWsHeaderElement
     'ws-nav': HTMLWsNavElement
@@ -74,6 +90,7 @@ declare global {
   }
 
   interface ElementTagNameMap {
+    'ws-figure': HTMLWsFigureElement;
     'ws-home': HTMLWsHomeElement;
     'ws-header': HTMLWsHeaderElement;
     'ws-nav': HTMLWsNavElement;
