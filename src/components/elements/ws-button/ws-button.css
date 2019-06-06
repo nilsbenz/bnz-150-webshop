@@ -4,7 +4,7 @@ button {
   border: 1px solid var(--primary);
   font-size: 1.1em;
   color: var(--primary);
-  border-radius: 5px;
+  border-radius: var(--small-border-radius);
   transition: all .2s;
   outline: none;
   cursor: pointer;
@@ -24,21 +24,21 @@ button:hover {
 }
 
 .lowOnBackground:hover, .middleOnBackground:hover {
-  background-color: var(--primaryLight);
-  border: 1px solid var(--primaryLight);
-  color: var(--onPrimary);
+  background-color: var(--primary-light);
+  border: 1px solid var(--primary-light);
+  color: var(--on-primary);
 }
 
 .lowOnPrimary {
   background-color: transparent;
   border: 1px solid transparent;
-  color: var(--onPrimary);
+  color: var(--on-primary);
 }
 
 .lowOnPrimary:hover, .middleOnPrimary:hover {
-  background-color: var(--primaryDark);
-  border: 1px solid var(--primaryDark);
-  color: var(--onPrimary);
+  background-color: var(--primary-dark);
+  border: 1px solid var(--primary-dark);
+  color: var(--on-primary);
 }
 
 .middleOnBackground {
@@ -49,32 +49,32 @@ button:hover {
 
 .middleOnPrimary {
   background-color: transparent;
-  border: 1px solid var(--onPrimary);
-  color: var(--onPrimary);
+  border: 1px solid var(--on-primary);
+  color: var(--on-primary);
 }
 
 .highOnBackground {
   background-color: var(--primary);
   border: 1px solid var(--primary);
-  color: var(--onPrimary);
+  color: var(--on-primary);
 }
 
 .highOnBackground:hover {
-  background-color: var(--primaryDark);
-  border: 1px solid var(--primaryDark);
-  color: var(--onPrimary);
+  background-color: var(--primary-dark);
+  border: 1px solid var(--primary-dark);
+  color: var(--on-primary);
 }
 
 .highOnPrimary {
-  background-color: var(--onPrimary);
-  border: 1px solid var(--onPrimary);
+  background-color: var(--on-primary);
+  border: 1px solid var(--on-primary);
   color: var(--primary);
 }
 
 .highOnPrimary:hover {
-  background-color: var(--primaryDark);
-  border: 1px solid var(--primaryDark);
-  color: var(--onPrimary);
+  background-color: var(--primary-dark);
+  border: 1px solid var(--primary-dark);
+  color: var(--on-primary);
 }
 
 .selected #active {
@@ -90,11 +90,11 @@ button:hover {
   animation-name: slideInFromLeft;
   animation-timing-function: ease-out;
   animation-duration: .2s;
-  transition: all .2s;
+  transition: border-bottom-color .2s;
 }
 
 .selected:hover #active {
-  border-bottom: 2px solid var(--onPrimary);
+  border-bottom-color: var(--on-primary);
 }
 
 @keyframes slideInFromLeft {

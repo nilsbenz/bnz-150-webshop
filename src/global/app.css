@@ -3,26 +3,29 @@ body {
   padding: 0;
   font-family: var(--text-font);
   background-color: var(--secondary);
+  color: var(--on-secondary);
   font-size: 18px;
 }
 
 :root {
-  --primary: #003070;
-  --primaryDark: #000844;
-  --primaryLight: #42599f;
-  --onPrimary: #ffffff;
-  --secondary: #eeeeee;
-  --secondaryDark: #dddddd;
-  --secondaryLight: #ffffff;
-  --onSecondary: #000000;
+  --primary: #00ff93;
+  --primary-dark: #00ca64;
+  --primary-light: #6cffc4;
+  --on-primary: #000000;
+  --secondary: #222222;
+  --secondary-dark: #333333;
+  --secondary-light: #111111;
+  --on-secondary: #CCCCCC;
   --alert: #D26969;
-  --onAlert: #000000;
+  --on-alert: #000000;
   --attention: #E9B347;
-  --onAttention: #000000;
+  --on-attention: #000000;
   --focus: #6CD269;
-  --onFocus: #000000;
+  --on-focus: #000000;
   --heading-font: 'Alsina', sans-serif;
   --text-font: 'SF-Compact-Text-Regular', sans-serif;
+  --small-border-radius: 4px;
+  --big-border-radius: 8px;
 }
 
 
