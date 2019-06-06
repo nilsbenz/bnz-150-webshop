@@ -5,52 +5,31 @@
  */
 
 
-import '@stencil/core';
-
-import '@stencil/router';
+import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 
 
 export namespace Components {
-
-  interface WsHome {}
-  interface WsHomeAttributes extends StencilHTMLAttributes {}
-
-  interface WsRoot {}
-  interface WsRootAttributes extends StencilHTMLAttributes {}
-
+  interface WsButton {
+    'emphasis': string;
+    'onBackground': boolean;
+    'onPrimary': boolean;
+    'routeLink': string;
+    'routeLinkExact': boolean;
+    'type': string;
+  }
   interface WsHeader {}
-  interface WsHeaderAttributes extends StencilHTMLAttributes {}
-
+  interface WsHome {}
   interface WsNav {}
-  interface WsNavAttributes extends StencilHTMLAttributes {}
+  interface WsRoot {}
 }
 
 declare global {
-  interface StencilElementInterfaces {
-    'WsHome': Components.WsHome;
-    'WsRoot': Components.WsRoot;
-    'WsHeader': Components.WsHeader;
-    'WsNav': Components.WsNav;
-  }
-
-  interface StencilIntrinsicElements {
-    'ws-home': Components.WsHomeAttributes;
-    'ws-root': Components.WsRootAttributes;
-    'ws-header': Components.WsHeaderAttributes;
-    'ws-nav': Components.WsNavAttributes;
-  }
 
 
-  interface HTMLWsHomeElement extends Components.WsHome, HTMLStencilElement {}
-  var HTMLWsHomeElement: {
-    prototype: HTMLWsHomeElement;
-    new (): HTMLWsHomeElement;
-  };
-
-  interface HTMLWsRootElement extends Components.WsRoot, HTMLStencilElement {}
-  var HTMLWsRootElement: {
-    prototype: HTMLWsRootElement;
-    new (): HTMLWsRootElement;
+  interface HTMLWsButtonElement extends Components.WsButton, HTMLStencilElement {}
+  var HTMLWsButtonElement: {
+    prototype: HTMLWsButtonElement;
+    new (): HTMLWsButtonElement;
   };
 
   interface HTMLWsHeaderElement extends Components.WsHeader, HTMLStencilElement {}
@@ -59,33 +38,62 @@ declare global {
     new (): HTMLWsHeaderElement;
   };
 
+  interface HTMLWsHomeElement extends Components.WsHome, HTMLStencilElement {}
+  var HTMLWsHomeElement: {
+    prototype: HTMLWsHomeElement;
+    new (): HTMLWsHomeElement;
+  };
+
   interface HTMLWsNavElement extends Components.WsNav, HTMLStencilElement {}
   var HTMLWsNavElement: {
     prototype: HTMLWsNavElement;
     new (): HTMLWsNavElement;
   };
 
+  interface HTMLWsRootElement extends Components.WsRoot, HTMLStencilElement {}
+  var HTMLWsRootElement: {
+    prototype: HTMLWsRootElement;
+    new (): HTMLWsRootElement;
+  };
   interface HTMLElementTagNameMap {
-    'ws-home': HTMLWsHomeElement
-    'ws-root': HTMLWsRootElement
-    'ws-header': HTMLWsHeaderElement
-    'ws-nav': HTMLWsNavElement
-  }
-
-  interface ElementTagNameMap {
-    'ws-home': HTMLWsHomeElement;
-    'ws-root': HTMLWsRootElement;
+    'ws-button': HTMLWsButtonElement;
     'ws-header': HTMLWsHeaderElement;
+    'ws-home': HTMLWsHomeElement;
     'ws-nav': HTMLWsNavElement;
+    'ws-root': HTMLWsRootElement;
   }
-
-
-  export namespace JSX {
-    export interface Element {}
-    export interface IntrinsicElements extends StencilIntrinsicElements {
-      [tagName: string]: any;
-    }
-  }
-  export interface HTMLAttributes extends StencilHTMLAttributes {}
-
 }
+
+declare namespace LocalJSX {
+  interface WsButton extends JSXBase.HTMLAttributes<HTMLWsButtonElement> {
+    'emphasis'?: string;
+    'onBackground'?: boolean;
+    'onPrimary'?: boolean;
+    'routeLink'?: string;
+    'routeLinkExact'?: boolean;
+    'type'?: string;
+  }
+  interface WsHeader extends JSXBase.HTMLAttributes<HTMLWsHeaderElement> {}
+  interface WsHome extends JSXBase.HTMLAttributes<HTMLWsHomeElement> {}
+  interface WsNav extends JSXBase.HTMLAttributes<HTMLWsNavElement> {}
+  interface WsRoot extends JSXBase.HTMLAttributes<HTMLWsRootElement> {}
+
+  interface IntrinsicElements {
+    'ws-button': WsButton;
+    'ws-header': WsHeader;
+    'ws-home': WsHome;
+    'ws-nav': WsNav;
+    'ws-root': WsRoot;
+  }
+}
+
+export { LocalJSX as JSX };
+
+
+declare module "@stencil/core" {
+  export namespace JSX {
+    interface IntrinsicElements extends LocalJSX.IntrinsicElements {}
+  }
+}
+
+

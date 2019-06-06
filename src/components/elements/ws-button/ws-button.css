@@ -1,0 +1,115 @@
+button {
+  padding: 8px 20px;
+  background-color: transparent;
+  border: 1px solid var(--primary);
+  font-size: 1.1em;
+  color: var(--primary);
+  border-radius: 5px;
+  transition: all .2s;
+  outline: none;
+  cursor: pointer;
+  font-family: var(--text-font);
+  display: inline-block;
+}
+
+button:hover {
+  transform: translateY(-1px);
+  filter: drop-shadow(2px 2px 2px rgba(0,0,0,.4));
+}
+
+.lowOnBackground {
+  background-color: transparent;
+  border: 1px solid transparent;
+  color: var(--primary);
+}
+
+.lowOnBackground:hover, .middleOnBackground:hover {
+  background-color: var(--primaryLight);
+  border: 1px solid var(--primaryLight);
+  color: var(--onPrimary);
+}
+
+.lowOnPrimary {
+  background-color: transparent;
+  border: 1px solid transparent;
+  color: var(--onPrimary);
+}
+
+.lowOnPrimary:hover, .middleOnPrimary:hover {
+  background-color: var(--primaryDark);
+  border: 1px solid var(--primaryDark);
+  color: var(--onPrimary);
+}
+
+.middleOnBackground {
+  background-color: transparent;
+  border: 1px solid var(--primary);
+  color: var(--primary);
+}
+
+.middleOnPrimary {
+  background-color: transparent;
+  border: 1px solid var(--onPrimary);
+  color: var(--onPrimary);
+}
+
+.highOnBackground {
+  background-color: var(--primary);
+  border: 1px solid var(--primary);
+  color: var(--onPrimary);
+}
+
+.highOnBackground:hover {
+  background-color: var(--primaryDark);
+  border: 1px solid var(--primaryDark);
+  color: var(--onPrimary);
+}
+
+.highOnPrimary {
+  background-color: var(--onPrimary);
+  border: 1px solid var(--onPrimary);
+  color: var(--primary);
+}
+
+.highOnPrimary:hover {
+  background-color: var(--primaryDark);
+  border: 1px solid var(--primaryDark);
+  color: var(--onPrimary);
+}
+
+.selected #active {
+  content: "";
+  position: relative;
+  width: 0;
+  height: 0;
+  top: 4px;
+  left: 0;
+  border-bottom: 2px solid var(--primary);
+  padding: 1px calc(50% + 10px);
+  margin: -4px -10px 0;
+  animation-name: slideInFromLeft;
+  animation-timing-function: ease-out;
+  animation-duration: .2s;
+  transition: all .2s;
+}
+
+.selected:hover #active {
+  border-bottom: 2px solid var(--onPrimary);
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    padding: 1px 0;
+    opacity: 0;
+    transform: translateX(calc(50% + 10px));
+  }
+  100% {
+    padding: 1px calc(50% + 10px);
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+:any-link {
+  color: transparent;
+}

@@ -1,4 +1,4 @@
-import {Component} from '@stencil/core';
+import {Component, h} from '@stencil/core';
 
 
 @Component({
@@ -9,15 +9,15 @@ import {Component} from '@stencil/core';
 export class WsNav {
 
   render() {
-    return (
+    return [
       <div>
         <nav>
-          <stencil-route-link url='/' activeClass="selected" exact={true}>Home</stencil-route-link>
-          <stencil-route-link url='/videos' activeClass="selected">Videos</stencil-route-link>
-          <stencil-route-link url='/fotos' activeClass="selected">Fotos</stencil-route-link>
-          <stencil-route-link url='/kontakt' activeClass="selected">Kontakt</stencil-route-link>
+          <ws-button routeLink="/" routeLinkExact>Home</ws-button>
+          <ws-button routeLink="/fotos">Fotos</ws-button>
+          <ws-button routeLink="/videos">Videos</ws-button>
+          <ws-button routeLink="/kontakt">Kontakt</ws-button>
         </nav>
       </div>
-    );
+    ];
   }
 }

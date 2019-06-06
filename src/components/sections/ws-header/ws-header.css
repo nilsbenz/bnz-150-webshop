@@ -1,11 +1,11 @@
 header {
-  color: var(--onSecondary);
   text-align: center;
   padding: 48px 0 16px;
 }
 
 h1{
   font-family: var(--heading-font);
+  color: var(--primaryDark);
   margin: 0;
   font-size: 8rem;
 }
