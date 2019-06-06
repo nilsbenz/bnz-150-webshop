@@ -10,11 +10,10 @@ export class WsRoot {
 
   render() {
     return (
-      <div class="ws-root">
+      <div>
         <ws-header/>
         <ws-nav/>
         <main>
-
           <stencil-router>
             <stencil-route-switch scrollTopOffset={0}>
               <stencil-route url='/' component='ws-home' exact={true} />

@@ -1,10 +1,11 @@
 header {
-  grid-column-start:1;
-
+  color: var(--onSecondary);
+  text-align: center;
+  padding: 48px 0 16px;
 }
 
 h1{
-  text-align: center;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  font-family: var(--heading-font);
+  margin: 0;
+  font-size: 8rem;
 }

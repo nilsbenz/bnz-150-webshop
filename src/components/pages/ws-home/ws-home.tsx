@@ -1,5 +1,5 @@
 import {Component} from '@stencil/core';
-import FotoService from "../../../services/FotoService";
+import ImageService from "../../../services/ImageService";
 
 @Component({
   tag: 'ws-home',
@@ -8,19 +8,19 @@ import FotoService from "../../../services/FotoService";
 })
 export class WsHome {
 
-private fotoService : FotoService;
-private homeFoto;
-async componentWillLoad(){
-  this.fotoService = new FotoService();
-  this.homeFoto = await this.fotoService.getImage('home');
-}
+  private imageService: ImageService;
+  private homeFoto;
+
+  async componentWillLoad() {
+    this.imageService = new ImageService();
+    this.homeFoto = await this.imageService.getHomeImage();
+    console.log(this.homeFoto);
+  }
 
   render() {
     return (
-      <div class='ws-home'>
-        <div class="figure">
-          <figure><img src={this.homeFoto} /></figure>
-        </div>
+      <div>
+        ws-home
       </div>
     );
   }

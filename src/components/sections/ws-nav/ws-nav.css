@@ -1,33 +1,19 @@
+div {
+  display: flex;
+  justify-content: center;
+}
 
-ul {
-  padding-left: 20%;
-  padding-right: 20%;
+nav {
   display: grid;
-  grid-auto-columns: auto;
-  grid-template-areas: "a a a a";
-  grid-gap: 15px;
+  grid-template-columns: repeat(4, auto);
+  grid-gap: 48px;
+}
 
-}
-li {
-  list-style-type: none;
-  grid-column-start: auto;
-}
 a {
-  padding:5px 0 5px 0;
+  color: inherit;
   text-decoration: none;
-  color:inherit;
 }
 
-p a:hover, a:active {
-  color:darkorange;
+.selected {
+  color: var(--primary);
 }
-
-p{
-  text-align: center;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  padding:0;
-  margin:0;
-}
-
-

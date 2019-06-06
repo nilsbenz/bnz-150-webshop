@@ -8,59 +8,49 @@
 import '@stencil/core';
 
 import '@stencil/router';
-import '@stencil/state-tunnel';
 
 
 export namespace Components {
 
-  interface WsFigure {
-    'source': String;
-  }
-  interface WsFigureAttributes extends StencilHTMLAttributes {
-    'source'?: String;
-  }
-
   interface WsHome {}
   interface WsHomeAttributes extends StencilHTMLAttributes {}
+
+  interface WsRoot {}
+  interface WsRootAttributes extends StencilHTMLAttributes {}
 
   interface WsHeader {}
   interface WsHeaderAttributes extends StencilHTMLAttributes {}
 
   interface WsNav {}
   interface WsNavAttributes extends StencilHTMLAttributes {}
-
-  interface WsRoot {}
-  interface WsRootAttributes extends StencilHTMLAttributes {}
 }
 
 declare global {
   interface StencilElementInterfaces {
-    'WsFigure': Components.WsFigure;
     'WsHome': Components.WsHome;
+    'WsRoot': Components.WsRoot;
     'WsHeader': Components.WsHeader;
     'WsNav': Components.WsNav;
-    'WsRoot': Components.WsRoot;
   }
 
   interface StencilIntrinsicElements {
-    'ws-figure': Components.WsFigureAttributes;
     'ws-home': Components.WsHomeAttributes;
+    'ws-root': Components.WsRootAttributes;
     'ws-header': Components.WsHeaderAttributes;
     'ws-nav': Components.WsNavAttributes;
-    'ws-root': Components.WsRootAttributes;
   }
 
-
-  interface HTMLWsFigureElement extends Components.WsFigure, HTMLStencilElement {}
-  var HTMLWsFigureElement: {
-    prototype: HTMLWsFigureElement;
-    new (): HTMLWsFigureElement;
-  };
 
   interface HTMLWsHomeElement extends Components.WsHome, HTMLStencilElement {}
   var HTMLWsHomeElement: {
     prototype: HTMLWsHomeElement;
     new (): HTMLWsHomeElement;
+  };
+
+  interface HTMLWsRootElement extends Components.WsRoot, HTMLStencilElement {}
+  var HTMLWsRootElement: {
+    prototype: HTMLWsRootElement;
+    new (): HTMLWsRootElement;
   };
 
   interface HTMLWsHeaderElement extends Components.WsHeader, HTMLStencilElement {}
@@ -75,26 +65,18 @@ declare global {
     new (): HTMLWsNavElement;
   };
 
-  interface HTMLWsRootElement extends Components.WsRoot, HTMLStencilElement {}
-  var HTMLWsRootElement: {
-    prototype: HTMLWsRootElement;
-    new (): HTMLWsRootElement;
-  };
-
   interface HTMLElementTagNameMap {
-    'ws-figure': HTMLWsFigureElement
     'ws-home': HTMLWsHomeElement
+    'ws-root': HTMLWsRootElement
     'ws-header': HTMLWsHeaderElement
     'ws-nav': HTMLWsNavElement
-    'ws-root': HTMLWsRootElement
   }
 
   interface ElementTagNameMap {
-    'ws-figure': HTMLWsFigureElement;
     'ws-home': HTMLWsHomeElement;
+    'ws-root': HTMLWsRootElement;
     'ws-header': HTMLWsHeaderElement;
     'ws-nav': HTMLWsNavElement;
-    'ws-root': HTMLWsRootElement;
   }
 
 
