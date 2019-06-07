@@ -19,8 +19,8 @@ export class WsRoot {
               <stencil-route-switch scrollTopOffset={0}>
                 <stencil-route url='/' component='ws-home' exact={true}/>
                 <stencil-route url='/videos/:name' component='ws-videos'/>
-                <stencil-route url='/fotos/:name' component='ws-fotos'/>
-                <stencil-route url='/kontakt/:name' component='ws-kontakt'/>
+                <stencil-route url='/fotos' component='ws-images'/>
+                <stencil-route url='/kontakt/:name' component='ws-contact'/>
               </stencil-route-switch>
             </stencil-router>
           </main>

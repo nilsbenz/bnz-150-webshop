@@ -1,18 +1,20 @@
+
 export default class ImageService{
 
-  async getHomeImage() {
-    const res = await fetch('/api/images/home');
+  private baseUrl = "http://localhost:8080"
+
+
+  // returns IDs of all Images
+  async getImageIds() {
+    const res = await fetch(this.baseUrl+'/api/images');
     return await res.json();
   }
 
-  async getImages() {
-    const res = await fetch('/api/images');
-    return await res.json();
-  }
-
-  async getImage(id: string, size: string, watermark: boolean) {
-     const res = await fetch(`/api/images/${id}?size=${size}&watermark=${watermark}`);
-     return await res.json();
+  // eturns src Urls of Image with this id
+  async getImageUrl(id: string) {
+     const res = await fetch(this.baseUrl+'/api/images/'+id);
+     const imgBlob = await res.blob();
+     return URL.createObjectURL(imgBlob);
   }
 
 
