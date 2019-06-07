@@ -26,6 +26,7 @@ body {
   --text-font: 'SF-Compact-Text-Regular', sans-serif;
   --small-border-radius: 4px;
   --big-border-radius: 8px;
+  --drop-shadow: rgba(204, 204, 204, .6);
 }
 
 
