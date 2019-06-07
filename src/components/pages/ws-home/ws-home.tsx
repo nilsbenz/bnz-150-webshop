@@ -20,7 +20,24 @@ export class WsHome {
   render() {
     return (
       <div>
-        ws-home
+        <ws-heading>
+          Dies ist die Homeseite
+        </ws-heading>
+        <ws-text>
+          Hier kann ich text eingeben.
+        </ws-text>
+        <ws-text>
+          Hier kann ich text eingeben.
+        </ws-text>
+        <ws-heading>
+          Dies ist die Homeseite
+        </ws-heading>
+        <ws-text>
+          Hier kann ich text eingeben.
+        </ws-text>
+        <ws-text>
+          Hier kann ich text eingeben.
+        </ws-text>
       </div>
     );
   }

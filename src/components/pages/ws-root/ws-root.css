@@ -1,4 +1,11 @@
-div {
+.space-between {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+}
+
+.main-content {
   display: grid;
   grid-template-columns: minmax(8px, 1fr) minmax(600px, 1000px) minmax(8px, 1fr);
   justify-content: stretch;

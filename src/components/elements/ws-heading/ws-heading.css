@@ -1,0 +1,6 @@
+h2 {
+  font-size: 4rem;
+  font-family: var(--heading-font);
+  color: var(--primary);
+  margin: 32px 0 8px;
+}

@@ -17,10 +17,13 @@ export namespace Components {
     'routeLinkExact': boolean;
     'type': string;
   }
+  interface WsFooter {}
   interface WsHeader {}
+  interface WsHeading {}
   interface WsHome {}
   interface WsNav {}
   interface WsRoot {}
+  interface WsText {}
 }
 
 declare global {
@@ -32,10 +35,22 @@ declare global {
     new (): HTMLWsButtonElement;
   };
 
+  interface HTMLWsFooterElement extends Components.WsFooter, HTMLStencilElement {}
+  var HTMLWsFooterElement: {
+    prototype: HTMLWsFooterElement;
+    new (): HTMLWsFooterElement;
+  };
+
   interface HTMLWsHeaderElement extends Components.WsHeader, HTMLStencilElement {}
   var HTMLWsHeaderElement: {
     prototype: HTMLWsHeaderElement;
     new (): HTMLWsHeaderElement;
+  };
+
+  interface HTMLWsHeadingElement extends Components.WsHeading, HTMLStencilElement {}
+  var HTMLWsHeadingElement: {
+    prototype: HTMLWsHeadingElement;
+    new (): HTMLWsHeadingElement;
   };
 
   interface HTMLWsHomeElement extends Components.WsHome, HTMLStencilElement {}
@@ -55,12 +70,21 @@ declare global {
     prototype: HTMLWsRootElement;
     new (): HTMLWsRootElement;
   };
+
+  interface HTMLWsTextElement extends Components.WsText, HTMLStencilElement {}
+  var HTMLWsTextElement: {
+    prototype: HTMLWsTextElement;
+    new (): HTMLWsTextElement;
+  };
   interface HTMLElementTagNameMap {
     'ws-button': HTMLWsButtonElement;
+    'ws-footer': HTMLWsFooterElement;
     'ws-header': HTMLWsHeaderElement;
+    'ws-heading': HTMLWsHeadingElement;
     'ws-home': HTMLWsHomeElement;
     'ws-nav': HTMLWsNavElement;
     'ws-root': HTMLWsRootElement;
+    'ws-text': HTMLWsTextElement;
   }
 }
 
@@ -73,17 +97,23 @@ declare namespace LocalJSX {
     'routeLinkExact'?: boolean;
     'type'?: string;
   }
+  interface WsFooter extends JSXBase.HTMLAttributes<HTMLWsFooterElement> {}
   interface WsHeader extends JSXBase.HTMLAttributes<HTMLWsHeaderElement> {}
+  interface WsHeading extends JSXBase.HTMLAttributes<HTMLWsHeadingElement> {}
   interface WsHome extends JSXBase.HTMLAttributes<HTMLWsHomeElement> {}
   interface WsNav extends JSXBase.HTMLAttributes<HTMLWsNavElement> {}
   interface WsRoot extends JSXBase.HTMLAttributes<HTMLWsRootElement> {}
+  interface WsText extends JSXBase.HTMLAttributes<HTMLWsTextElement> {}
 
   interface IntrinsicElements {
     'ws-button': WsButton;
+    'ws-footer': WsFooter;
     'ws-header': WsHeader;
+    'ws-heading': WsHeading;
     'ws-home': WsHome;
     'ws-nav': WsNav;
     'ws-root': WsRoot;
+    'ws-text': WsText;
   }
 }
 
