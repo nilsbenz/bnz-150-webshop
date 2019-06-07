@@ -21,6 +21,7 @@ export class WsRoot {
                 <stencil-route url='/videos/:name' component='ws-videos'/>
                 <stencil-route url='/fotos/:name' component='ws-fotos'/>
                 <stencil-route url='/kontakt/:name' component='ws-kontakt'/>
+                <stencil-route url='/login' component='ws-login'/>
               </stencil-route-switch>
             </stencil-router>
           </main>
