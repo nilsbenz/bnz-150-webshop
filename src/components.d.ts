@@ -23,7 +23,7 @@ export namespace Components {
   interface WsHome {}
   interface WsImages {}
   interface WsLogin {}
-  interface WsNav {}
+  interface WsRegister {}
   interface WsRoot {}
   interface WsText {}
 }
@@ -73,10 +73,10 @@ declare global {
     new (): HTMLWsLoginElement;
   };
 
-  interface HTMLWsNavElement extends Components.WsNav, HTMLStencilElement {}
-  var HTMLWsNavElement: {
-    prototype: HTMLWsNavElement;
-    new (): HTMLWsNavElement;
+  interface HTMLWsRegisterElement extends Components.WsRegister, HTMLStencilElement {}
+  var HTMLWsRegisterElement: {
+    prototype: HTMLWsRegisterElement;
+    new (): HTMLWsRegisterElement;
   };
 
   interface HTMLWsRootElement extends Components.WsRoot, HTMLStencilElement {}
@@ -98,7 +98,7 @@ declare global {
     'ws-home': HTMLWsHomeElement;
     'ws-images': HTMLWsImagesElement;
     'ws-login': HTMLWsLoginElement;
-    'ws-nav': HTMLWsNavElement;
+    'ws-register': HTMLWsRegisterElement;
     'ws-root': HTMLWsRootElement;
     'ws-text': HTMLWsTextElement;
   }
@@ -119,7 +119,7 @@ declare namespace LocalJSX {
   interface WsHome extends JSXBase.HTMLAttributes<HTMLWsHomeElement> {}
   interface WsImages extends JSXBase.HTMLAttributes<HTMLWsImagesElement> {}
   interface WsLogin extends JSXBase.HTMLAttributes<HTMLWsLoginElement> {}
-  interface WsNav extends JSXBase.HTMLAttributes<HTMLWsNavElement> {}
+  interface WsRegister extends JSXBase.HTMLAttributes<HTMLWsRegisterElement> {}
   interface WsRoot extends JSXBase.HTMLAttributes<HTMLWsRootElement> {}
   interface WsText extends JSXBase.HTMLAttributes<HTMLWsTextElement> {}
 
@@ -131,7 +131,7 @@ declare namespace LocalJSX {
     'ws-home': WsHome;
     'ws-images': WsImages;
     'ws-login': WsLogin;
-    'ws-nav': WsNav;
+    'ws-register': WsRegister;
     'ws-root': WsRoot;
     'ws-text': WsText;
   }

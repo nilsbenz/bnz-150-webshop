@@ -2,7 +2,7 @@ button {
   padding: 8px 20px;
   background-color: transparent;
   border: 1px solid var(--primary);
-  font-size: 1.1em;
+  font-size: 1.1rem;
   color: var(--primary);
   border-radius: var(--small-border-radius);
   transition: all .2s;
@@ -91,6 +91,10 @@ button:hover {
   animation-timing-function: ease-out;
   animation-duration: .2s;
   transition: border-bottom-color .2s;
+}
+
+.selected .lowOnPrimary #active, .selected .middleOnPrimary #active, .selected .highOnPrimary #active {
+  border-bottom: 2px solid var(--on-primary);
 }
 
 .selected:hover #active {

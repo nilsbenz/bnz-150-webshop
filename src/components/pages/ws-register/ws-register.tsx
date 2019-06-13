@@ -1,26 +1,30 @@
 import {Component, h} from '@stencil/core';
 
 @Component({
-  tag: 'ws-login',
-  styleUrl: 'ws-login.css',
+  tag: 'ws-register',
+  styleUrl: 'ws-register.css',
   shadow: true
 })
-export class WsLogin {
+export class WsRegister {
 
   render() {
     return (
       <div>
-        <ws-heading>Login</ws-heading>
+        <ws-heading>Registrieren</ws-heading>
         <form onSubmit={() => this.handleSubmit()}>
           <label>
             Benutzername
             <input type="text"/>
           </label>
           <label>
+            Mail
+            <input type="email"/>
+          </label>
+          <label>
             Passwort
             <input type="password"/>
           </label>
-          <button type="submit">Einloggen</button>
+          <button type="submit">Registrieren</button>
         </form>
       </div>
     );
