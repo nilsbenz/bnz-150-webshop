@@ -26,6 +26,7 @@ export namespace Components {
   interface WsRegister {}
   interface WsRoot {}
   interface WsText {}
+  interface WsVideos {}
 }
 
 declare global {
@@ -90,6 +91,12 @@ declare global {
     prototype: HTMLWsTextElement;
     new (): HTMLWsTextElement;
   };
+
+  interface HTMLWsVideosElement extends Components.WsVideos, HTMLStencilElement {}
+  var HTMLWsVideosElement: {
+    prototype: HTMLWsVideosElement;
+    new (): HTMLWsVideosElement;
+  };
   interface HTMLElementTagNameMap {
     'ws-button': HTMLWsButtonElement;
     'ws-footer': HTMLWsFooterElement;
@@ -101,6 +108,7 @@ declare global {
     'ws-register': HTMLWsRegisterElement;
     'ws-root': HTMLWsRootElement;
     'ws-text': HTMLWsTextElement;
+    'ws-videos': HTMLWsVideosElement;
   }
 }
 
@@ -122,6 +130,7 @@ declare namespace LocalJSX {
   interface WsRegister extends JSXBase.HTMLAttributes<HTMLWsRegisterElement> {}
   interface WsRoot extends JSXBase.HTMLAttributes<HTMLWsRootElement> {}
   interface WsText extends JSXBase.HTMLAttributes<HTMLWsTextElement> {}
+  interface WsVideos extends JSXBase.HTMLAttributes<HTMLWsVideosElement> {}
 
   interface IntrinsicElements {
     'ws-button': WsButton;
@@ -134,6 +143,7 @@ declare namespace LocalJSX {
     'ws-register': WsRegister;
     'ws-root': WsRoot;
     'ws-text': WsText;
+    'ws-videos': WsVideos;
   }
 }
 
