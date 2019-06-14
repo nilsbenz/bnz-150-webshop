@@ -1,29 +1,47 @@
+@font-face {
+  font-family: ThemedFont;
+  src: url("/assets/fonts/Alsina.ttf");
+}
+
+@font-face {
+  font-family: HeadingFont;
+  src: url("/assets/fonts/Roboto-Regular.ttf");
+}
+
+@font-face {
+  font-family: TextFont;
+  src: url("/assets/fonts/OpenSans-Regular.ttf");
+}
+
 body {
   margin: 0;
   padding: 0;
   font-family: var(--text-font);
   background-color: var(--secondary);
   color: var(--on-secondary);
-  font-size: 18px;
+  font-size: 16px;
 }
 
 :root {
-  --primary: #00ff93;
-  --primary-dark: #00ca64;
-  --primary-light: #6cffc4;
-  --on-primary: #000000;
-  --secondary: #222222;
-  --secondary-dark: #333333;
-  --secondary-light: #111111;
-  --on-secondary: #CCCCCC;
+  --primary: #80c2ac;
+  --primary-dark: #51917d;
+  --primary-light: #b1f5de;
+  --on-primary: #333;
+  --on-primary-disabled: #555;
+  --secondary: #222;
+  --secondary-dark: #333;
+  --secondary-light: #111;
+  --on-secondary: #ccc;
+  --on-secondary-disabled: #aaa;
   --alert: #D26969;
-  --on-alert: #000000;
+  --on-alert: #000;
   --attention: #E9B347;
-  --on-attention: #000000;
+  --on-attention: #000;
   --focus: #6CD269;
-  --on-focus: #000000;
-  --heading-font: 'Alsina', sans-serif;
-  --text-font: 'SF-Compact-Text-Regular', sans-serif;
+  --on-focus: #000;
+  --themed-font: 'ThemedFont', sans-serif;
+  --heading-font: 'HeadingFont', Helvetica, Arial, sans-serif;
+  --text-font: 'TextFont', Helvetica, Arial, sans-serif;
   --small-border-radius: 4px;
   --big-border-radius: 8px;
   --drop-shadow: rgba(204, 204, 204, .6);

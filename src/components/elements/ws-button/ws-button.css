@@ -1,9 +1,6 @@
 button {
   padding: 8px 20px;
-  background-color: transparent;
-  border: 1px solid var(--primary);
-  font-size: 1.1rem;
-  color: var(--primary);
+  font-size: 1rem;
   border-radius: var(--small-border-radius);
   transition: all .2s;
   outline: none;
@@ -12,32 +9,25 @@ button {
   display: inline-block;
 }
 
-button:hover {
-  transform: translateY(-1px);
-  filter: drop-shadow(2px 2px 2px var(--drop-shadow));
-}
-
 .lowOnBackground {
   background-color: transparent;
   border: 1px solid transparent;
-  color: var(--primary);
+  color: var(--on-secondary-disabled);
+  padding: 4px;
 }
 
-.lowOnBackground:hover, .middleOnBackground:hover {
-  background-color: var(--primary-light);
-  border: 1px solid var(--primary-light);
-  color: var(--on-primary);
+.lowOnBackground:hover {
+  color: var(--primary);
 }
 
 .lowOnPrimary {
   background-color: transparent;
   border: 1px solid transparent;
-  color: var(--on-primary);
+  color: var(--on-primary-disabled);
+  padding: 4px;
 }
 
-.lowOnPrimary:hover, .middleOnPrimary:hover {
-  background-color: var(--primary-dark);
-  border: 1px solid var(--primary-dark);
+.lowOnPrimary:hover {
   color: var(--on-primary);
 }
 
@@ -47,9 +37,21 @@ button:hover {
   color: var(--primary);
 }
 
+.middleOnBackground:hover {
+  background-color: var(--primary-light);
+  border: 1px solid var(--primary-light);
+  color: var(--on-primary);
+}
+
 .middleOnPrimary {
   background-color: transparent;
   border: 1px solid var(--on-primary);
+  color: var(--on-primary);
+}
+
+.middleOnPrimary:hover {
+  background-color: var(--primary-dark);
+  border: 1px solid var(--primary-dark);
   color: var(--on-primary);
 }
 
@@ -77,6 +79,10 @@ button:hover {
   color: var(--on-primary);
 }
 
+.selected .lowOnPrimary {
+  color: var(--on-primary);
+}
+
 .selected #active {
   content: "";
   position: relative;
@@ -85,15 +91,15 @@ button:hover {
   top: 4px;
   left: 0;
   border-bottom: 2px solid var(--primary);
-  padding: 1px calc(50% + 10px);
-  margin: -4px -10px 0;
+  padding: 1px calc(50% + 4px);
+  margin: -4px -4px 0;
   animation-name: slideInFromLeft;
   animation-timing-function: ease-out;
   animation-duration: .2s;
   transition: border-bottom-color .2s;
 }
 
-.selected .lowOnPrimary #active, .selected .middleOnPrimary #active, .selected .highOnPrimary #active {
+.selected .lowOnPrimary #active {
   border-bottom: 2px solid var(--on-primary);
 }
 
@@ -105,10 +111,10 @@ button:hover {
   0% {
     padding: 1px 0;
     opacity: 0;
-    transform: translateX(calc(50% + 10px));
+    transform: translateX(calc(50% + 4px));
   }
   100% {
-    padding: 1px calc(50% + 10px);
+    padding: 1px calc(50% + 4px);
     opacity: 1;
     transform: translateX(0);
   }

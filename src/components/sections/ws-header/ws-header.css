@@ -1,13 +1,20 @@
 header {
+  background-color: var(--primary);
+  padding: 16px 24px 24px;
+  display: flex;
+  justify-content: center;
+}
+
+.container {
   display: flex;
   flex-direction: column;
+  width: 100%;
+  max-width: 1400px;
 }
 
 nav {
   display: flex;
   justify-content: space-between;
-  background-color: var(--primary);
-  padding: 8px 12px;
 }
 
 nav div {
@@ -15,13 +22,19 @@ nav div {
 }
 
 ws-button {
-  margin: 0 4px;
+  margin: 0 8px;
 }
 
 h1 {
-  font-family: var(--heading-font);
-  color: var(--on-secondary);
-  margin: 32px 0 0;
+  font-family: var(--themed-font);
+  color: var(--on-primary);
+  margin: 0;
   font-size: 8rem;
-  align-self: center;
+}
+
+p {
+  margin: -2rem 0 1.5rem 8px;
+  font-family: var(--themed-font);
+  color: var(--on-primary);
+  font-size: 3rem;
 }
