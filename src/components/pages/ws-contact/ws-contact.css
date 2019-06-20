@@ -1,0 +1,45 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  align-self: center;
+  grid-gap: 16px 32px;
+}
+
+img {
+  width: 250px;
+  background-color: var(--primary);
+}
+
+h3 {
+  text-align: center;
+  margin: 0;
+  font-size: 2rem;
+  font-family: var(--heading-font);
+}
+
+.contact {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+p {
+  margin: 8px 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+  margin: 8px 0;
+}
+
+hr {
+  width: 100%;
+  margin: 32px 0;
+}

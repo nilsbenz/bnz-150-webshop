@@ -6,7 +6,9 @@
 
 
 import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
-
+import {
+  RouterHistory,
+} from '@stencil/router';
 
 export namespace Components {
   interface WsButton {
@@ -17,13 +19,24 @@ export namespace Components {
     'routeLinkExact': boolean;
     'type': string;
   }
+  interface WsContact {}
   interface WsFooter {}
-  interface WsHeader {}
+  interface WsHeader {
+    'isLoggedIn': boolean;
+  }
   interface WsHeading {}
   interface WsHome {}
+  interface WsImageGallery {
+    'images': string[];
+    'numberOfImages': number;
+  }
   interface WsImages {}
-  interface WsLogin {}
-  interface WsRegister {}
+  interface WsLogin {
+    'history': RouterHistory;
+  }
+  interface WsRegister {
+    'history': RouterHistory;
+  }
   interface WsRoot {}
   interface WsText {}
   interface WsVideos {}
@@ -36,6 +49,12 @@ declare global {
   var HTMLWsButtonElement: {
     prototype: HTMLWsButtonElement;
     new (): HTMLWsButtonElement;
+  };
+
+  interface HTMLWsContactElement extends Components.WsContact, HTMLStencilElement {}
+  var HTMLWsContactElement: {
+    prototype: HTMLWsContactElement;
+    new (): HTMLWsContactElement;
   };
 
   interface HTMLWsFooterElement extends Components.WsFooter, HTMLStencilElement {}
@@ -60,6 +79,12 @@ declare global {
   var HTMLWsHomeElement: {
     prototype: HTMLWsHomeElement;
     new (): HTMLWsHomeElement;
+  };
+
+  interface HTMLWsImageGalleryElement extends Components.WsImageGallery, HTMLStencilElement {}
+  var HTMLWsImageGalleryElement: {
+    prototype: HTMLWsImageGalleryElement;
+    new (): HTMLWsImageGalleryElement;
   };
 
   interface HTMLWsImagesElement extends Components.WsImages, HTMLStencilElement {}
@@ -99,10 +124,12 @@ declare global {
   };
   interface HTMLElementTagNameMap {
     'ws-button': HTMLWsButtonElement;
+    'ws-contact': HTMLWsContactElement;
     'ws-footer': HTMLWsFooterElement;
     'ws-header': HTMLWsHeaderElement;
     'ws-heading': HTMLWsHeadingElement;
     'ws-home': HTMLWsHomeElement;
+    'ws-image-gallery': HTMLWsImageGalleryElement;
     'ws-images': HTMLWsImagesElement;
     'ws-login': HTMLWsLoginElement;
     'ws-register': HTMLWsRegisterElement;
@@ -121,23 +148,38 @@ declare namespace LocalJSX {
     'routeLinkExact'?: boolean;
     'type'?: string;
   }
+  interface WsContact extends JSXBase.HTMLAttributes<HTMLWsContactElement> {}
   interface WsFooter extends JSXBase.HTMLAttributes<HTMLWsFooterElement> {}
-  interface WsHeader extends JSXBase.HTMLAttributes<HTMLWsHeaderElement> {}
+  interface WsHeader extends JSXBase.HTMLAttributes<HTMLWsHeaderElement> {
+    'isLoggedIn'?: boolean;
+    'onLoggedOut'?: (event: CustomEvent<any>) => void;
+  }
   interface WsHeading extends JSXBase.HTMLAttributes<HTMLWsHeadingElement> {}
   interface WsHome extends JSXBase.HTMLAttributes<HTMLWsHomeElement> {}
+  interface WsImageGallery extends JSXBase.HTMLAttributes<HTMLWsImageGalleryElement> {
+    'images'?: string[];
+    'numberOfImages'?: number;
+  }
   interface WsImages extends JSXBase.HTMLAttributes<HTMLWsImagesElement> {}
-  interface WsLogin extends JSXBase.HTMLAttributes<HTMLWsLoginElement> {}
-  interface WsRegister extends JSXBase.HTMLAttributes<HTMLWsRegisterElement> {}
+  interface WsLogin extends JSXBase.HTMLAttributes<HTMLWsLoginElement> {
+    'history'?: RouterHistory;
+    'onLoggedIn'?: (event: CustomEvent<any>) => void;
+  }
+  interface WsRegister extends JSXBase.HTMLAttributes<HTMLWsRegisterElement> {
+    'history'?: RouterHistory;
+  }
   interface WsRoot extends JSXBase.HTMLAttributes<HTMLWsRootElement> {}
   interface WsText extends JSXBase.HTMLAttributes<HTMLWsTextElement> {}
   interface WsVideos extends JSXBase.HTMLAttributes<HTMLWsVideosElement> {}
 
   interface IntrinsicElements {
     'ws-button': WsButton;
+    'ws-contact': WsContact;
     'ws-footer': WsFooter;
     'ws-header': WsHeader;
     'ws-heading': WsHeading;
     'ws-home': WsHome;
+    'ws-image-gallery': WsImageGallery;
     'ws-images': WsImages;
     'ws-login': WsLogin;
     'ws-register': WsRegister;

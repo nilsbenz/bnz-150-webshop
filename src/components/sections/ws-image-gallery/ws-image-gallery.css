@@ -1,0 +1,26 @@
+div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-rows: 300px;
+  grid-gap: 16px;
+  padding: 8px 0;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background-color: var(--primary);
+}
+
+.imageTemplate {
+  width: 100%;
+  height: 300px;
+  background-color: var(--primary);
+}
+
+@media only screen and (max-width: 716px) {
+  div {
+    grid-template-columns: 1fr;
+  }
+}

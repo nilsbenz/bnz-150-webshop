@@ -5,23 +5,13 @@
   height: 100vh;
 }
 
-.main-content {
+main {
   display: grid;
   grid-template-columns: minmax(8px, 1fr) minmax(600px, 1000px) minmax(8px, 1fr);
   justify-content: stretch;
 }
 
-ws-header {
-  grid-column: 1 / -1;
-  grid-row: 1 / 2;
-}
-
-ws-nav {
-  grid-column: 1 / -1;
-  grid-row: 2 / 3;
-}
-
-main {
+stencil-router {
   grid-column: 2 / 3;
   grid-row: 3 / 4;
 }

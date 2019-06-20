@@ -1,5 +1,6 @@
-import {Component, h} from '@stencil/core';
+import {Component, h, Prop, State, Event, EventEmitter} from '@stencil/core';
 import authService from '../../../services/AuthService';
+import {RouterHistory} from "@stencil/router";
 
 @Component({
   tag: 'ws-login',
@@ -12,6 +13,12 @@ export class WsLogin {
     username: string,
     password: string
   };
+
+  @Event() loggedIn: EventEmitter;
+
+  @Prop() history: RouterHistory;
+
+  @State() alert: boolean;
 
   componentWillLoad() {
     this.user = {
@@ -27,14 +34,18 @@ export class WsLogin {
         <form onSubmit={e => this.handleSubmit(e)}>
           <label>
             Benutzername
-            <input type="text" onInput={e => this.handleUsernameInput(e)}/>
+            <input type="text" name="username" onInput={e => this.handleUsernameInput(e)}/>
           </label>
           <label>
             Passwort
-            <input type="password" onInput={e => this.handlePasswordInput(e)}/>
+            <input type="password" name="password" onInput={e => this.handlePasswordInput(e)}/>
           </label>
           <button type="submit">Einloggen</button>
         </form>
+        {this.alert
+          ? <p class="alert">Falsche Eingabe</p>
+          : {}
+        }
       </div>
     );
   }
@@ -42,10 +53,12 @@ export class WsLogin {
   async handleSubmit(e) {
     e.preventDefault();
     const res = await authService.login(this.user);
-    if(res.status === 200) {
-      console.log('logged in');
+    if(res) {
+      this.alert = false;
+      this.loggedIn.emit();
+      this.history.push('/');
     } else {
-      console.log(res);
+      this.alert = true;
     }
   }
 

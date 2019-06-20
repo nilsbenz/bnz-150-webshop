@@ -1,5 +1,4 @@
-import {Component, h} from '@stencil/core';
-
+import {Component, Event, EventEmitter, h, Prop} from '@stencil/core';
 
 @Component({
   tag: 'ws-header',
@@ -7,6 +6,10 @@ import {Component, h} from '@stencil/core';
   shadow: true
 })
 export class WsHeader {
+
+  @Prop() isLoggedIn: boolean;
+
+  @Event() loggedOut: EventEmitter;
 
   render() {
     return (
@@ -17,13 +20,18 @@ export class WsHeader {
           <nav>
             <div>
               <ws-button routeLink="/" routeLinkExact onPrimary>Home</ws-button>
-              <ws-button routeLink="/fotos" onPrimary>Fotos</ws-button>
               <ws-button routeLink="/videos" onPrimary>Videos</ws-button>
+              <ws-button routeLink="/fotos" onPrimary>Fotos</ws-button>
               <ws-button routeLink="/kontakt" onPrimary>Kontakt</ws-button>
             </div>
             <div>
-              <ws-button route-link="/registrieren" onPrimary>Registrieren</ws-button>
-              <ws-button route-link="/login" onPrimary>Login</ws-button>
+              {this.isLoggedIn
+                ? <ws-button onClick={() => this.loggedOut.emit()} onPrimary>Ausloggen</ws-button>
+                : [
+                  <ws-button route-link="/registrieren" onPrimary>Registrieren</ws-button>,
+                  <ws-button route-link="/login" onPrimary>Login</ws-button>
+                ]
+              }
             </div>
           </nav>
         </div>

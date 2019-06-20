@@ -1,5 +1,6 @@
-import {Component, h, State} from '@stencil/core';
+import {Component, h, Prop, State} from '@stencil/core';
 import authService from "../../../services/AuthService";
+import {RouterHistory} from "@stencil/router";
 
 @Component({
   tag: 'ws-register',
@@ -13,6 +14,8 @@ export class WsRegister {
     mail: string,
     password: string
   };
+
+  @Prop() history: RouterHistory;
 
   @State() private alert: boolean;
 
@@ -31,15 +34,15 @@ export class WsRegister {
         <form onSubmit={e => this.handleSubmit(e)}>
           <label>
             Benutzername
-            <input type="text" onInput={e => this.handleUsernameInput(e)}/>
+            <input type="text" name="username" onInput={e => this.handleUsernameInput(e)}/>
           </label>
           <label>
             Mail
-            <input type="email" onInput={e => this.handleMailInput(e)}/>
+            <input type="email" name="email" onInput={e => this.handleMailInput(e)}/>
           </label>
           <label>
             Passwort
-            <input type="password" onInput={e => this.handlePasswordInput(e)}/>
+            <input type="password" name="password" onInput={e => this.handlePasswordInput(e)}/>
           </label>
           <button type="submit">Registrieren</button>
         </form>
@@ -55,9 +58,10 @@ export class WsRegister {
     e.preventDefault();
     const res = await authService.register(this.user);
     if(res.status === 200) {
-      console.log('logged in');
+      await authService.login(this.user);
+      this.alert = false;
+      this.history.push('/');
     } else {
-      console.log(res);
       this.alert = true;
     }
   }
