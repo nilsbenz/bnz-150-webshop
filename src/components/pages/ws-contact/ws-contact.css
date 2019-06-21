@@ -44,3 +44,30 @@ hr {
   width: 100%;
   margin: 32px 0;
 }
+
+@media only screen and (max-width: 1016px) {
+  .card {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-auto-columns: auto;
+    grid-template-areas: "image" "name" "contact";
+    justify-content: center;
+  }
+
+  img {
+    grid-area: image;
+  }
+
+  h3 {
+    grid-area: name;
+  }
+
+  .contact {
+    grid-area: contact;
+    align-items: center;
+  }
+
+  hr {
+    margin: 16px 0;
+  }
+}

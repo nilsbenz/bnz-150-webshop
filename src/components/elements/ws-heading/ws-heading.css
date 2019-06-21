@@ -5,3 +5,9 @@ h2 {
   margin: 48px 0 16px;
   font-weight: 500;
 }
+
+@media only screen and (max-width: 1016px) {
+  h2 {
+    margin: 32px 0 12px;
+  }
+}

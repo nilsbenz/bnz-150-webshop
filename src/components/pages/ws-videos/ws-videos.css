@@ -1,7 +1,6 @@
 .videos {
   width: 100%;
   display: grid;
-  justify-content: center;
   grid-auto-rows: auto;
   grid-gap: 16px 0;
 }
@@ -14,35 +13,11 @@ iframe {
 
 @media only screen and (max-width: 1016px) {
   iframe {
-    width: 900px;
-    height: 506px;
+    width: 100%;
+    height: 55.2vw;
   }
-}
 
-@media only screen and (max-width: 916px) {
-  iframe {
-    width: 800px;
-    height: 450px;
-  }
-}
-
-@media only screen and (max-width: 816px) {
-  iframe {
-    width: 700px;
-    height: 394px;
-  }
-}
-
-@media only screen and (max-width: 716px) {
-  iframe {
-    width: 600px;
-    height: 338px;
-  }
-}
-
-@media only screen and (max-width: 616px) {
-  iframe {
-    width: 500px;
-    height: 281px;
+  .videos {
+    grid-gap: 8px 0;
   }
 }
