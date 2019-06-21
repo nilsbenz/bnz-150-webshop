@@ -20,18 +20,10 @@ export class WsImageGallery {
           ? this.images.map((url, index) =>
             <img src={url} alt="image" onClick={() => this.imageClicked(index)}/>
           )
-          : this.renderTemplate()
+          : {}
         }
       </div>
     );
-  }
-
-  renderTemplate() {
-    let template = [];
-    for(let i = 0; i < this.numberOfImages; i++) {
-      template.push(<div class="imageTemplate" />);
-    }
-    return template;
   }
 
   imageClicked(index: number) {

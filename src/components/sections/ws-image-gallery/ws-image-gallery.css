@@ -1,7 +1,7 @@
 div {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-auto-rows: 300px;
+  grid-auto-rows: 328px;
   grid-gap: 16px;
   padding: 8px 0;
 }
@@ -20,15 +20,15 @@ img:hover {
   transform: scale(1.03);
 }
 
-.imageTemplate {
-  width: 100%;
-  height: 300px;
-  background-color: var(--primary);
-  border-radius: var(--small-border-radius);
+@media only screen and (max-width: 1016px) {
+  div {
+    grid-auto-rows: 32.2vw;
+  }
 }
 
 @media only screen and (max-width: 716px) {
   div {
     grid-template-columns: 1fr;
+    grid-auto-rows: 65.5vw;
   }
 }
