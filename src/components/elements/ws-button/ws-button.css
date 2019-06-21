@@ -12,8 +12,12 @@ button {
 .lowOnBackground {
   background-color: transparent;
   border: 1px solid transparent;
-  color: var(--on-secondary-disabled);
+  color: var(--on-secondary);
   padding: 4px;
+}
+
+stencil-route-link .lowOnBackground {
+  color: var(--on-secondary-disabled);
 }
 
 .lowOnBackground:hover {
@@ -23,8 +27,12 @@ button {
 .lowOnPrimary {
   background-color: transparent;
   border: 1px solid transparent;
-  color: var(--on-primary-disabled);
+  color: var(--on-primary);
   padding: 4px;
+}
+
+stencil-route-link .lowOnPrimary {
+  color: var(--on-primary-disabled);
 }
 
 .lowOnPrimary:hover {

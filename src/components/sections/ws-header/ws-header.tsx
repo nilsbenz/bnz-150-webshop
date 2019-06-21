@@ -12,12 +12,16 @@ export class WsHeader {
   @Event() loggedOut: EventEmitter;
 
   render() {
-    return (
+    return [
       <header>
         <div class="container">
           <h1>Nils Benz</h1>
           <p>Videography</p>
-          <nav>
+          {this.isLoggedIn
+            ? <ws-button onClick={() => this.loggedOut.emit()} onPrimary class="mobile-login">Logout</ws-button>
+            : <ws-button routeLink="/login" onPrimary class="mobile-login">Login</ws-button>
+          }
+          <nav class="desktop">
             <div>
               <ws-button routeLink="/" routeLinkExact onPrimary>Home</ws-button>
               <ws-button routeLink="/videos" onPrimary>Videos</ws-button>
@@ -35,7 +39,16 @@ export class WsHeader {
             </div>
           </nav>
         </div>
-      </header>
-    );
+      </header>,
+      <nav class="mobile">
+        <stencil-route-link url="/" exact={true} activeClass="active"><i class="fas fa-home"/></stencil-route-link>
+        <stencil-route-link url="/videos" activeClass="active"><i class="fas fa-video"/>
+        </stencil-route-link>
+        <stencil-route-link url="/fotos" activeClass="active"><i class="fas fa-camera"/>
+        </stencil-route-link>
+        <stencil-route-link url="/kontakt" activeClass="active"><i class="fas fa-address-card"/>
+        </stencil-route-link>
+      </nav>
+    ];
   }
 }

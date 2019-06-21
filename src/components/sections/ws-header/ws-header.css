@@ -1,3 +1,5 @@
+@import url("https://use.fontawesome.com/releases/v5.5.0/css/all.css");
+
 header {
   position: sticky;
   top: -14.2rem;
@@ -13,14 +15,15 @@ header {
   flex-direction: column;
   width: 100%;
   max-width: 1400px;
+  color: var(--on-primary);
 }
 
-nav {
+.desktop {
   display: flex;
   justify-content: space-between;
 }
 
-nav div {
+.desktop div {
   display: flex;
 }
 
@@ -40,4 +43,78 @@ p {
   font-family: var(--themed-font);
   color: var(--on-primary);
   font-size: 3rem;
+}
+
+.mobile {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  justify-content: space-around;
+  background-color: var(--primary);
+  color: var(--on-primary-disabled);
+  width: calc(100% - 32px);
+  padding: 16px;
+  display: none;
+  font-size: 2rem;
+  z-index: 90;
+}
+
+.active {
+  color: var(--on-primary)
+}
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+.fas {
+  cursor: pointer;
+}
+
+.mobile-login {
+  display: none;
+  font-size: 1.6rem;
+}
+
+@media only screen and (max-width: 768px) {
+
+  header {
+    padding: 16px 24px;
+  }
+
+  .container {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: 3rem auto;
+    align-items: center;
+  }
+
+  h1 {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    font-size: 3rem;
+  }
+
+  p {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+    font-size: 1.6rem;
+    margin: 0;
+  }
+
+  .mobile-login {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+    display: block;
+  }
+
+  .desktop {
+    display: none;
+  }
+
+  .mobile {
+    display: flex;
+  }
 }
