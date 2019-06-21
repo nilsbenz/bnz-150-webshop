@@ -1,4 +1,4 @@
-import {Component, h, Prop, State} from '@stencil/core';
+import {Component, Event, EventEmitter, h, Prop, State} from '@stencil/core';
 import authService from "../../../services/AuthService";
 import {RouterHistory} from "@stencil/router";
 
@@ -14,6 +14,8 @@ export class WsRegister {
     mail: string,
     password: string
   };
+
+  @Event() loggedIn: EventEmitter;
 
   @Prop() history: RouterHistory;
 
@@ -60,6 +62,7 @@ export class WsRegister {
     if(res.status === 200) {
       await authService.login(this.user);
       this.alert = false;
+      this.loggedIn.emit();
       this.history.push('/');
     } else {
       this.alert = true;

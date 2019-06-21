@@ -1,4 +1,4 @@
-import {Component, h, State} from '@stencil/core';
+import {Component, h, Listen, Prop, State} from '@stencil/core';
 import ImageService from "../../../services/ImageService";
 
 @Component({
@@ -8,10 +8,14 @@ import ImageService from "../../../services/ImageService";
 })
 export class WsImages {
 
+  @Prop() isLoggedIn: boolean;
+
   private imageService: ImageService;
   private imageIds;
 
   @State() private imageUrls: string[];
+  @State() private showImageDetail: boolean;
+  @State() private selectedImage;
 
   async componentWillLoad() {
     this.imageService = new ImageService();
@@ -30,11 +34,25 @@ export class WsImages {
   }
 
   render() {
-    return (
+    return [
       <div>
         <ws-heading>Fotos</ws-heading>
-        <ws-image-gallery images={this.imageUrls} numberOfImages={this.imageIds.length} />
-      </div>
-    );
+        <ws-image-gallery images={this.imageUrls} numberOfImages={this.imageIds.length}/>
+      </div>,
+      this.showImageDetail
+        ? <ws-image-detail image={this.selectedImage} isLoggedIn={this.isLoggedIn}/>
+        : {}
+    ];
+  }
+
+  @Listen('openImage')
+  openImage(event: CustomEvent) {
+    this.selectedImage = this.imageUrls[event.detail];
+    this.showImageDetail = true;
+  }
+
+  @Listen('closeImage')
+  closeImage() {
+    this.showImageDetail = false;
   }
 }
