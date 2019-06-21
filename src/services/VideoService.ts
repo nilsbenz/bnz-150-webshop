@@ -1,9 +1,9 @@
-export default class VideoService{
+import {baseUrl} from "../util/fetch";
 
-  private baseUrl = "http://localhost:8080";
+export default class VideoService {
 
   async getVideoUrls() {
-    const res = await fetch(this.baseUrl + '/api/videos');
+    const res = await fetch(baseUrl + '/api/videos');
     return await res.json();
   }
 

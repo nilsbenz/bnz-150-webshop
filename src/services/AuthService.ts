@@ -1,4 +1,4 @@
-import {baseUrl} from "../global/app";
+import {baseUrl} from "../util/fetch";
 
 class AuthService {
   async login(user) {
