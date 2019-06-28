@@ -1,5 +1,5 @@
 import {Component, h, Listen, Prop, State} from '@stencil/core';
-import ImageService from "../../../services/ImageService";
+import imageService from "../../../services/ImageService";
 
 @Component({
   tag: 'ws-images',
@@ -10,7 +10,6 @@ export class WsImages {
 
   @Prop() isLoggedIn: boolean;
 
-  private imageService: ImageService;
   private imageIds;
 
   @State() private imageUrls: string[];
@@ -18,16 +17,15 @@ export class WsImages {
   @State() private selectedImage;
 
   async componentWillLoad() {
-    this.imageService = new ImageService();
     this.imageIds = [];
     this.imageUrls = [];
 
-    this.imageIds = await this.imageService.getImageIds();
+    this.imageIds = await imageService.getImageIds();
   }
 
   async componentDidLoad() {
     const promises = this.imageIds.map(async image =>
-      this.imageUrls.push(await this.imageService.getImageUrl(image))
+      this.imageUrls.push(await imageService.getImageUrl(image))
     );
     await Promise.all(promises);
     this.imageUrls = [...this.imageUrls];
@@ -47,7 +45,7 @@ export class WsImages {
 
   @Listen('openImage')
   openImage(event: CustomEvent) {
-    this.selectedImage = this.imageUrls[event.detail];
+    this.selectedImage = [this.imageUrls[event.detail], this.imageIds[event.detail]];
     this.showImageDetail = true;
   }
 

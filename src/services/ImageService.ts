@@ -1,6 +1,6 @@
-import {baseUrl} from "../util/fetch";
+import {baseUrl, fetchWithToken} from "../util/fetch";
 
-export default class ImageService {
+class ImageService {
 
   async getImageIds() {
     const res = await fetch(baseUrl + '/api/images');
@@ -13,5 +13,22 @@ export default class ImageService {
     return URL.createObjectURL(imgBlob);
   }
 
+  async getLicencedImg(id: string){
+    const res = await fetchWithToken(baseUrl + '/api/download/' + id);
+    return await res.blob();
+  }
+
+  async isBought(id: string){
+    const res = await fetchWithToken(baseUrl + '/api/images/licensed/' + id);
+    return await res.json();
+  }
+
+  async buy(id: string){
+    await fetchWithToken(baseUrl+'/api/images/buy/' + id, {method: 'POST'});
+  }
 }
+
+const imageService = new ImageService();
+
+export default imageService;
 

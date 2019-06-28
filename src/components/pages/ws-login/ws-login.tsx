@@ -17,6 +17,7 @@ export class WsLogin {
   @Event() loggedIn: EventEmitter;
 
   @Prop() history: RouterHistory;
+  @Prop() nextPage: String;
 
   @State() alert: boolean;
 

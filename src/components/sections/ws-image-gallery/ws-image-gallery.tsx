@@ -16,7 +16,7 @@ export class WsImageGallery {
   render() {
     return (
       <div>
-        {this.images.length && this.images.length > 0
+        {this.images && this.images.length > 0
           ? this.images.map((url, index) =>
             <img src={url} alt="image" onClick={() => this.imageClicked(index)}/>
           )

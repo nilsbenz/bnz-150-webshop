@@ -27,7 +27,7 @@ export namespace Components {
   interface WsHeading {}
   interface WsHome {}
   interface WsImageDetail {
-    'image': string;
+    'image': any;
     'isLoggedIn': boolean;
   }
   interface WsImageGallery {
@@ -39,6 +39,11 @@ export namespace Components {
   }
   interface WsLogin {
     'history': RouterHistory;
+    'nextPage': String;
+  }
+  interface WsLoginOverlay {
+    'imageSelected': any;
+    'nextPage': String;
   }
   interface WsRegister {
     'history': RouterHistory;
@@ -111,6 +116,12 @@ declare global {
     new (): HTMLWsLoginElement;
   };
 
+  interface HTMLWsLoginOverlayElement extends Components.WsLoginOverlay, HTMLStencilElement {}
+  var HTMLWsLoginOverlayElement: {
+    prototype: HTMLWsLoginOverlayElement;
+    new (): HTMLWsLoginOverlayElement;
+  };
+
   interface HTMLWsRegisterElement extends Components.WsRegister, HTMLStencilElement {}
   var HTMLWsRegisterElement: {
     prototype: HTMLWsRegisterElement;
@@ -145,6 +156,7 @@ declare global {
     'ws-image-gallery': HTMLWsImageGalleryElement;
     'ws-images': HTMLWsImagesElement;
     'ws-login': HTMLWsLoginElement;
+    'ws-login-overlay': HTMLWsLoginOverlayElement;
     'ws-register': HTMLWsRegisterElement;
     'ws-root': HTMLWsRootElement;
     'ws-text': HTMLWsTextElement;
@@ -170,7 +182,7 @@ declare namespace LocalJSX {
   interface WsHeading extends JSXBase.HTMLAttributes<HTMLWsHeadingElement> {}
   interface WsHome extends JSXBase.HTMLAttributes<HTMLWsHomeElement> {}
   interface WsImageDetail extends JSXBase.HTMLAttributes<HTMLWsImageDetailElement> {
-    'image'?: string;
+    'image'?: any;
     'isLoggedIn'?: boolean;
     'onCloseImage'?: (event: CustomEvent<any>) => void;
   }
@@ -184,7 +196,13 @@ declare namespace LocalJSX {
   }
   interface WsLogin extends JSXBase.HTMLAttributes<HTMLWsLoginElement> {
     'history'?: RouterHistory;
+    'nextPage'?: String;
     'onLoggedIn'?: (event: CustomEvent<any>) => void;
+  }
+  interface WsLoginOverlay extends JSXBase.HTMLAttributes<HTMLWsLoginOverlayElement> {
+    'imageSelected'?: any;
+    'nextPage'?: String;
+    'onCloseLogin'?: (event: CustomEvent<any>) => void;
   }
   interface WsRegister extends JSXBase.HTMLAttributes<HTMLWsRegisterElement> {
     'history'?: RouterHistory;
@@ -205,6 +223,7 @@ declare namespace LocalJSX {
     'ws-image-gallery': WsImageGallery;
     'ws-images': WsImages;
     'ws-login': WsLogin;
+    'ws-login-overlay': WsLoginOverlay;
     'ws-register': WsRegister;
     'ws-root': WsRoot;
     'ws-text': WsText;
