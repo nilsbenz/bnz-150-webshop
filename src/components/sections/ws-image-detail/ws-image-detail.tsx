@@ -1,7 +1,6 @@
-import {Component, Event, EventEmitter, h, Prop, State} from '@stencil/core';
+import {Component, Event, EventEmitter, h, Listen, Prop, State} from '@stencil/core';
 import download from "downloadjs";
 import imageService from "../../../services/ImageService";
-import {Listen} from "@stencil/core/dist/testing/core";
 
 @Component({
   tag: 'ws-image-detail',
@@ -22,7 +21,6 @@ export class WsImageDetail {
   private imageUrl = this.image[0];
 
   async componentWillLoad() {
-    this.imageBought = false;
     await this.load();
   }
 
@@ -30,38 +28,36 @@ export class WsImageDetail {
     return [
       <div class="wrapper">
         <div class="actions">
-
           {this.imageBought
             ? <ws-button emphasis="high" onClick={() => this.downloadImage()}>Aabelaade</ws-button>
             : <ws-button emphasis="high"
-                         onClick={()=> this.handleBuy()}>Kaufen</ws-button>
+                         onClick={() => this.handleBuy()}>Kaufen</ws-button>
           }
           <i class="fas fa-times" onClick={() => this.closeImage.emit()}/>
         </div>
         <img src={this.imageUrl} alt="image"/>
-      </div>
-    ,
+      </div>,
       this.showLogin
-        ? <ws-login-overlay nextPage="fotos" imageSelected={this.image}></ws-login-overlay>
+        ? <ws-login-overlay nextPage="fotos" imageSelected={this.image}/>
         : {}
     ];
   }
 
   async load() {
     this.isLoggedIn
-    ? this.imageBought = await imageService.isBought(this.imageId).catch(()=>this.imageBought=false)
-    : this.imageBought = false;
+      ? this.imageBought = await imageService.isBought(this.imageId).catch(() => this.imageBought = false)
+      : this.imageBought = false;
   }
 
-  async downloadImage(){
+  async downloadImage() {
     const img = await imageService.getLicencedImg(this.imageId);
     download(img, "image.jpg", "image/jpeg");
   }
 
-  handleBuy(){
+  handleBuy() {
     this.isLoggedIn
       ? this.buy()
-      : this.showLogin=true
+      : this.showLogin = true;
   }
 
   async buy() {
@@ -70,7 +66,7 @@ export class WsImageDetail {
   }
 
   @Listen('closeLogin')
-  closeLogin(){
+  closeLogin() {
     this.showLogin = false;
   }
 

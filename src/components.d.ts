@@ -43,7 +43,7 @@ export namespace Components {
   }
   interface WsLoginOverlay {
     'imageSelected': any;
-    'nextPage': String;
+    'nextPage': string;
   }
   interface WsRegister {
     'history': RouterHistory;
@@ -201,8 +201,7 @@ declare namespace LocalJSX {
   }
   interface WsLoginOverlay extends JSXBase.HTMLAttributes<HTMLWsLoginOverlayElement> {
     'imageSelected'?: any;
-    'nextPage'?: String;
-    'onCloseLogin'?: (event: CustomEvent<any>) => void;
+    'nextPage'?: string;
   }
   interface WsRegister extends JSXBase.HTMLAttributes<HTMLWsRegisterElement> {
     'history'?: RouterHistory;
