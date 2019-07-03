@@ -16,9 +16,9 @@ export class WsImageDetail {
 
   @State() imageBought: boolean;
   @State() showLogin: boolean;
+  @State() imageUrl;
 
-  private imageId = this.image[1];
-  private imageUrl = this.image[0];
+  private imageId;
 
   async componentWillLoad() {
     await this.load();
@@ -29,34 +29,49 @@ export class WsImageDetail {
       <div class="wrapper">
         <div class="actions">
           {this.imageBought
-            ? <ws-button emphasis="high" onClick={() => this.downloadImage()}>Aabelaade</ws-button>
+            ? <ws-button emphasis="high" onClick={() => this.downloadImage()}>Herunterladen</ws-button>
             : <ws-button emphasis="high"
                          onClick={() => this.handleBuy()}>Kaufen</ws-button>
           }
+          <div class="license">
+            <ws-link rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+              <img alt="Creative Commons Lizenzvertrag"
+                   src="https://i.creativecommons.org/l/by/4.0/88x31.png"/>
+            </ws-link>
+            Dieses
+            Werk ist lizenziert unter einer
+            <ws-link rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+              Creative Commons Namensnennung 4.0 International Lizenz
+            </ws-link>
+          </div>
           <i class="fas fa-times" onClick={() => this.closeImage.emit()}/>
         </div>
         <img src={this.imageUrl} alt="image"/>
       </div>,
       this.showLogin
-        ? <ws-login-overlay nextPage="fotos" imageSelected={this.image}/>
+        ? <ws-login-overlay/>
         : {}
     ];
   }
 
   async load() {
+    this.imageId = this.image[1];
     this.isLoggedIn
       ? this.imageBought = await imageService.isBought(this.imageId).catch(() => this.imageBought = false)
       : this.imageBought = false;
+    this.imageBought
+      ? this.imageUrl = URL.createObjectURL(await imageService.getLicencedImg(this.imageId))
+      : this.imageUrl = this.image[0];
   }
+
 
   async downloadImage() {
-    const img = await imageService.getLicencedImg(this.imageId);
-    download(img, "image.jpg", "image/jpeg");
+    download(this.imageUrl, "nilsbenz-" + this.imageId + ".jpg", "image/jpeg");
   }
 
-  handleBuy() {
+  async handleBuy() {
     this.isLoggedIn
-      ? this.buy()
+      ? await this.buy()
       : this.showLogin = true;
   }
 
@@ -65,8 +80,14 @@ export class WsImageDetail {
     await this.load();
   }
 
-  @Listen('closeLogin')
-  closeLogin() {
+  @Listen('loggedIn')
+  loggedIn() {
+    this.closeLoginOverlay()
+    this.buy();
+  }
+
+  @Listen('closeLoginOverlay')
+  closeLoginOverlay() {
     this.showLogin = false;
   }
 

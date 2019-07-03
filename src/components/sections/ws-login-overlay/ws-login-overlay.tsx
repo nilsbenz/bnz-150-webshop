@@ -1,4 +1,6 @@
-import {Component, h, Prop} from '@stencil/core';
+import {Component, Event, EventEmitter, h, Prop, State} from '@stencil/core';
+import authService from "../../../services/AuthService";
+import {RouterHistory} from "@stencil/router";
 
 @Component({
   tag: 'ws-login-overlay',
@@ -7,13 +9,116 @@ import {Component, h, Prop} from '@stencil/core';
 })
 export class WsLoginOverlay {
 
-  @Prop() nextPage: string;
-  @Prop() imageSelected;
+  private loginUser: {
+    username: string,
+    password: string
+  };
+
+  private registerUser: {
+    username: string,
+    mail: string,
+    password: string
+  };
+
+  @Event() loggedIn: EventEmitter;
+  @Event() closeLoginOverlay: EventEmitter;
+
+  @Prop() history: RouterHistory;
+  @Prop() nextPage: String;
+
+  @State() alert: boolean;
+  @State() register: boolean;
+
+  componentWillLoad() {
+    this.loginUser = {
+      username: null,
+      password: null
+    };
+    this.registerUser = {
+      username: null,
+      mail: null,
+      password: null
+    };
+  }
 
   render() {
     return (
-      <div>Login Overlay</div>
-    )
+      <div>
+        <ws-heading>Du musst dich zuerst einloggen</ws-heading>
+        <ws-button emphasis="middle" onClick={() => this.closeLoginOverlay.emit()}>Fenster schliessen</ws-button>
+        <form onSubmit={e => this.handleSubmit(e)}>
+          <label>
+            Benutzername
+            <input type="text" name="username" onInput={e => this.handleUsernameInput(e)}/>
+          </label>
+          {this.register
+            ? <label>
+              Mail
+              <input type="email" name="mail" onInput={e => this.handleMailInput(e)} value={this.registerUser.mail}/>
+            </label>
+            : {}
+          }
+          <label>
+            Passwort
+            <input type="password" name="password" onInput={e => this.handlePasswordInput(e)}/>
+          </label>
+          <button type="submit">
+            {this.register
+              ? 'Registrieren'
+              : 'Einloggen'
+            }
+          </button>
+          {this.register
+            ? <ws-text>Bereits registriert? Hier gehts zum <strong onClick={() => this.register = false}>Login</strong>
+            </ws-text>
+            : <ws-text>Zum ersten Mal hier? Hier gehts zur <strong
+              onClick={() => this.register = true}>Registrierung</strong></ws-text>
+          }
+
+        </form>
+        {this.alert
+          ? <p class="alert">
+            {this.register
+              ? 'Benutzername oder Mail bereits vergeben'
+              : 'Falsche Eingabe'
+            }
+          </p>
+          : {}
+        }
+      </div>
+    );
+  }
+
+  async handleSubmit(e) {
+    e.preventDefault();
+    let res;
+    if (this.register) {
+      let registered = await authService.register(this.registerUser);
+      this.alert = registered.status !== 200;
+    }
+    if (!this.alert) {
+      res = await authService.login(this.loginUser);
+    }
+    if (res) {
+      this.alert = false;
+      this.loggedIn.emit();
+    } else {
+      this.alert = true;
+    }
+  }
+
+  handleUsernameInput(e) {
+    this.loginUser.username = e.target.value;
+    this.registerUser.username = e.target.value;
+  }
+
+  handleMailInput(e) {
+    this.registerUser.mail = e.target.value;
+  }
+
+  handlePasswordInput(e) {
+    this.loginUser.password = e.target.value;
+    this.registerUser.password = e.target.value;
   }
 
 }

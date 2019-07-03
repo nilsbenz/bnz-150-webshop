@@ -14,17 +14,20 @@ class ImageService {
   }
 
   async getLicencedImg(id: string){
-    const res = await fetchWithToken(baseUrl + '/api/download/' + id);
+    const res = await fetchWithToken('/api/download/' + id);
     return await res.blob();
   }
 
   async isBought(id: string){
-    const res = await fetchWithToken(baseUrl + '/api/images/licensed/' + id);
+    const res = await fetchWithToken('/api/images/licensed/' + id);
     return await res.json();
   }
 
   async buy(id: string){
-    await fetchWithToken(baseUrl+'/api/images/buy/' + id, {method: 'POST'});
+    await fetchWithToken('/api/images/buy/' + id, {
+      method: 'POST',
+      headers: {}
+    });
   }
 }
 

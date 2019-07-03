@@ -72,9 +72,15 @@ a {
   cursor: pointer;
 }
 
-.mobile-login {
+.mobile-auth-buttons {
   display: none;
   font-size: 1.6rem;
+  align-self: center;
+  flex-direction: column;
+}
+
+.mobile-logout {
+  display: none;
 }
 
 @media only screen and (max-width: 768px) {
@@ -104,10 +110,14 @@ a {
     margin: 0;
   }
 
-  .mobile-login {
-    grid-column: 2 / 3;
-    grid-row: 1 / 2;
+  .mobile-logout {
     display: block;
+  }
+
+  .mobile-auth-buttons {
+    grid-column: 2 / 3;
+    grid-row: 1 / 3;
+    display: flex;
   }
 
   .desktop {

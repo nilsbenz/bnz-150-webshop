@@ -18,8 +18,11 @@ export class WsHeader {
           <h1>Nils Benz</h1>
           <p>Videography</p>
           {this.isLoggedIn
-            ? <ws-button onClick={() => this.loggedOut.emit()} onPrimary class="mobile-login">Logout</ws-button>
-            : <ws-button routeLink="/login" onPrimary class="mobile-login">Login</ws-button>
+            ? <ws-button onClick={() => this.loggedOut.emit()} onPrimary class="mobile-logout">Logout</ws-button>
+            : <div class="mobile-auth-buttons">
+              <ws-button routeLink="/registrieren" onPrimary>Registrieren</ws-button>
+              <ws-button routeLink="/login" onPrimary>Login</ws-button>
+            </div>
           }
           <nav class="desktop">
             <div>
