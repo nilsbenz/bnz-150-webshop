@@ -26,21 +26,23 @@ export class WsImageDetail {
       <div class="wrapper">
         <div class="actions">
           {this.imageBought
-            ? <ws-button emphasis="high" onClick={() => this.downloadImage()}>Herunterladen</ws-button>
+            ? [
+              <ws-button emphasis="high" onClick={() => this.downloadImage()}>Herunterladen</ws-button>,
+              <div class="license">
+                <ws-link rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+                  <img alt="Creative Commons Lizenzvertrag"
+                       src="https://i.creativecommons.org/l/by/4.0/88x31.png"/>
+                </ws-link>
+                Dieses
+                Werk ist lizenziert unter einer
+                <ws-link rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+                  Creative Commons Namensnennung 4.0 International Lizenz
+                </ws-link>
+              </div>
+            ]
             : <ws-button emphasis="high"
                          onClick={() => this.handleBuy()}>Kaufen</ws-button>
           }
-          <div class="license">
-            <ws-link rel="license" href="http://creativecommons.org/licenses/by/4.0/">
-              <img alt="Creative Commons Lizenzvertrag"
-                   src="https://i.creativecommons.org/l/by/4.0/88x31.png"/>
-            </ws-link>
-            Dieses
-            Werk ist lizenziert unter einer
-            <ws-link rel="license" href="http://creativecommons.org/licenses/by/4.0/">
-              Creative Commons Namensnennung 4.0 International Lizenz
-            </ws-link>
-          </div>
           <i class="fas fa-times" onClick={() => this.closeImage.emit()}/>
         </div>
         <img src={this.image.url} alt="image"/>
@@ -55,8 +57,11 @@ export class WsImageDetail {
     this.isLoggedIn
       ? this.imageBought = await imageService.isBought(this.image.id).catch(() => this.imageBought = false)
       : this.imageBought = false;
-    if(this.imageBought) {
-      this.image = {...this.image, url: this.image.url = URL.createObjectURL(await imageService.getLicencedImg(this.image.id))}
+    if (this.imageBought) {
+      this.image = {
+        ...this.image,
+        url: this.image.url = URL.createObjectURL(await imageService.getLicencedImg(this.image.id))
+      }
     }
   }
 
