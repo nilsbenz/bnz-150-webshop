@@ -8,7 +8,7 @@ import {Component, h, Prop, Event, EventEmitter} from '@stencil/core';
 })
 export class WsImageGallery {
 
-  @Prop() images: string[];
+  @Prop() images: any[];
   @Prop() numberOfImages: number;
 
   @Event() openImage: EventEmitter;
@@ -17,8 +17,8 @@ export class WsImageGallery {
     return (
       <div>
         {this.images && this.images.length > 0
-          ? this.images.map((url, index) =>
-            <img src={url} alt="image" onClick={() => this.imageClicked(index)}/>
+          ? this.images.map((image, index) =>
+            <img src={image.url} alt="image" onClick={() => this.imageClicked(index)}/>
           )
           : {}
         }
@@ -27,6 +27,6 @@ export class WsImageGallery {
   }
 
   imageClicked(index: number) {
-    this.openImage.emit(index);
+    this.openImage.emit(this.images[index].id);
   }
 }

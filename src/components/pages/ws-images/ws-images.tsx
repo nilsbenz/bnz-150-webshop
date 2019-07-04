@@ -12,30 +12,30 @@ export class WsImages {
 
   private imageIds;
 
-  @State() private imageUrls: string[];
+  @State() private images: any[];
   @State() private showImageDetail: boolean;
   @State() private selectedImage;
 
   async componentWillLoad() {
     this.imageIds = [];
-    this.imageUrls = [];
+    this.images = [];
 
     this.imageIds = await imageService.getImageIds();
   }
 
   async componentDidLoad() {
     const promises = this.imageIds.map(async image =>
-      this.imageUrls.push(await imageService.getImageUrl(image))
+      this.images.push(await imageService.getImageUrl(image))
     );
     await Promise.all(promises);
-    this.imageUrls = [...this.imageUrls];
+    this.images = [...this.images];
   }
 
   render() {
     return [
       <div>
         <ws-heading>Fotos</ws-heading>
-        <ws-image-gallery images={this.imageUrls} numberOfImages={this.imageIds.length}/>
+        <ws-image-gallery images={this.images} numberOfImages={this.imageIds.length}/>
       </div>,
       this.showImageDetail
         ? <ws-image-detail image={this.selectedImage} isLoggedIn={this.isLoggedIn}/>
@@ -45,7 +45,7 @@ export class WsImages {
 
   @Listen('openImage')
   openImage(event: CustomEvent) {
-    this.selectedImage = [this.imageUrls[event.detail], this.imageIds[event.detail]];
+    this.selectedImage = this.images.find(image => image.id === event.detail);
     this.showImageDetail = true;
   }
 

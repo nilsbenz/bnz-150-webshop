@@ -31,7 +31,7 @@ export namespace Components {
     'isLoggedIn': boolean;
   }
   interface WsImageGallery {
-    'images': string[];
+    'images': any[];
     'numberOfImages': number;
   }
   interface WsImages {
@@ -199,7 +199,7 @@ declare namespace LocalJSX {
     'onCloseImage'?: (event: CustomEvent<any>) => void;
   }
   interface WsImageGallery extends JSXBase.HTMLAttributes<HTMLWsImageGalleryElement> {
-    'images'?: string[];
+    'images'?: any[];
     'numberOfImages'?: number;
     'onOpenImage'?: (event: CustomEvent<any>) => void;
   }

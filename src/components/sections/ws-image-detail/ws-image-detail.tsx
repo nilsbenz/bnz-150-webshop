@@ -9,16 +9,13 @@ import imageService from "../../../services/ImageService";
 })
 export class WsImageDetail {
 
-  @Prop() image;
+  @Prop({mutable: true}) image;
   @Prop() isLoggedIn: boolean;
 
   @Event() closeImage: EventEmitter;
 
   @State() imageBought: boolean;
   @State() showLogin: boolean;
-  @State() imageUrl;
-
-  private imageId;
 
   async componentWillLoad() {
     await this.load();
@@ -46,7 +43,7 @@ export class WsImageDetail {
           </div>
           <i class="fas fa-times" onClick={() => this.closeImage.emit()}/>
         </div>
-        <img src={this.imageUrl} alt="image"/>
+        <img src={this.image.url} alt="image"/>
       </div>,
       this.showLogin
         ? <ws-login-overlay/>
@@ -55,18 +52,17 @@ export class WsImageDetail {
   }
 
   async load() {
-    this.imageId = this.image[1];
     this.isLoggedIn
-      ? this.imageBought = await imageService.isBought(this.imageId).catch(() => this.imageBought = false)
+      ? this.imageBought = await imageService.isBought(this.image.id).catch(() => this.imageBought = false)
       : this.imageBought = false;
-    this.imageBought
-      ? this.imageUrl = URL.createObjectURL(await imageService.getLicencedImg(this.imageId))
-      : this.imageUrl = this.image[0];
+    if(this.imageBought) {
+      this.image = {...this.image, url: this.image.url = URL.createObjectURL(await imageService.getLicencedImg(this.image.id))}
+    }
   }
 
 
   async downloadImage() {
-    download(this.imageUrl, "nilsbenz-" + this.imageId + ".jpg", "image/jpeg");
+    download(this.image.url, "nilsbenz-" + this.image.id + ".jpg", "image/jpeg");
   }
 
   async handleBuy() {
@@ -76,7 +72,7 @@ export class WsImageDetail {
   }
 
   async buy() {
-    await imageService.buy(this.imageId);
+    await imageService.buy(this.image.id);
     await this.load();
   }
 
