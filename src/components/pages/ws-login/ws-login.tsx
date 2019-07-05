@@ -35,11 +35,11 @@ export class WsLogin {
         <form onSubmit={e => this.handleSubmit(e)}>
           <label>
             Benutzername
-            <input type="text" name="username" onInput={e => this.handleUsernameInput(e)}/>
+            <input type="text" name="username" onInput={e => this.handleUsernameInput(e)} required/>
           </label>
           <label>
             Passwort
-            <input type="password" name="password" onInput={e => this.handlePasswordInput(e)}/>
+            <input type="password" name="password" onInput={e => this.handlePasswordInput(e)} required/>
           </label>
           <button type="submit">Einloggen</button>
         </form>

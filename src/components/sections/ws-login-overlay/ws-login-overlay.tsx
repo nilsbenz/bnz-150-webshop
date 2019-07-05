@@ -20,6 +20,8 @@ export class WsLoginOverlay {
     password: string
   };
 
+  private passwordInput: HTMLInputElement;
+
   @Event() loggedIn: EventEmitter;
   @Event() closeLoginOverlay: EventEmitter;
 
@@ -49,18 +51,20 @@ export class WsLoginOverlay {
         <form onSubmit={e => this.handleSubmit(e)}>
           <label>
             Benutzername
-            <input type="text" name="username" onInput={e => this.handleUsernameInput(e)}/>
+            <input type="text" name="username" onInput={e => this.handleUsernameInput(e)} required/>
           </label>
           {this.register
             ? <label>
               Mail
-              <input type="email" name="mail" onInput={e => this.handleMailInput(e)} value={this.registerUser.mail}/>
+              <input type="email" name="mail" onInput={e => this.handleMailInput(e)} value={this.registerUser.mail}
+                     required/>
             </label>
             : {}
           }
           <label>
             Passwort
-            <input type="password" name="password" onInput={e => this.handlePasswordInput(e)}/>
+            <input type="password" name="password" onInput={e => this.handlePasswordInput(e)}
+                   ref={el => this.passwordInput = el as HTMLInputElement} required/>
           </label>
           <button type="submit">
             {this.register
@@ -69,10 +73,10 @@ export class WsLoginOverlay {
             }
           </button>
           {this.register
-            ? <ws-text>Bereits registriert? Hier gehts zum <strong onClick={() => this.register = false}>Login</strong>
+            ? <ws-text>Bereits registriert? Hier gehts zum <strong onClick={() => this.toggleRegister()}>Login</strong>
             </ws-text>
             : <ws-text>Zum ersten Mal hier? Hier gehts zur <strong
-              onClick={() => this.register = true}>Registrierung</strong></ws-text>
+              onClick={() => this.toggleRegister()}>Registrierung</strong></ws-text>
           }
 
         </form>
@@ -87,6 +91,14 @@ export class WsLoginOverlay {
         }
       </div>
     );
+  }
+
+  toggleRegister() {
+    this.register = !this.register;
+    this.alert = false;
+    this.loginUser.password = '';
+    this.registerUser.password = '';
+    this.passwordInput.value = '';
   }
 
   async handleSubmit(e) {

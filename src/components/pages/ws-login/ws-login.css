@@ -47,8 +47,11 @@ button:hover {
   background-color: var(--primary-dark);
   border: 1px solid var(--primary-dark);
   color: var(--on-primary);
-  transform: translateY(-1px);
-  filter: drop-shadow(2px 2px 2px var(--drop-shadow));
+}
+
+.alert {
+  color: var(--alert);
+  text-align: center;
 }
 
 input:-webkit-autofill,

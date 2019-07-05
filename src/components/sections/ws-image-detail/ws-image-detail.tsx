@@ -16,6 +16,7 @@ export class WsImageDetail {
 
   @State() imageBought: boolean;
   @State() showLogin: boolean;
+  @State() licensedImage;
 
   async componentWillLoad() {
     await this.load();
@@ -58,16 +59,17 @@ export class WsImageDetail {
       ? this.imageBought = await imageService.isBought(this.image.id).catch(() => this.imageBought = false)
       : this.imageBought = false;
     if (this.imageBought) {
+      this.licensedImage = await imageService.getLicencedImg(this.image.id);
       this.image = {
         ...this.image,
-        url: this.image.url = URL.createObjectURL(await imageService.getLicencedImg(this.image.id))
+        url: this.image.url = URL.createObjectURL(this.licensedImage)
       }
     }
   }
 
 
   async downloadImage() {
-    download(this.image.url, "nilsbenz-" + this.image.id + ".jpg", "image/jpeg");
+    download(this.licensedImage, "nilsbenz-" + this.image.id + ".jpg", "image/jpeg");
   }
 
   async handleBuy() {
