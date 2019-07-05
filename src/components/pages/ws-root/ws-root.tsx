@@ -30,6 +30,7 @@ export class WsRoot {
                 <stencil-route url='/kontakt' component='ws-contact'/>
                 <stencil-route url='/login' component='ws-login'/>
                 <stencil-route url='/registrieren' component='ws-register'/>
+                <stencil-route component='ws-page-not-found'/>
               </stencil-route-switch>
             </stencil-router>
           </main>

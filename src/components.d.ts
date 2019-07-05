@@ -50,6 +50,7 @@ export namespace Components {
     'history': RouterHistory;
     'nextPage': String;
   }
+  interface WsPageNotFound {}
   interface WsRegister {
     'history': RouterHistory;
   }
@@ -133,6 +134,12 @@ declare global {
     new (): HTMLWsLoginOverlayElement;
   };
 
+  interface HTMLWsPageNotFoundElement extends Components.WsPageNotFound, HTMLStencilElement {}
+  var HTMLWsPageNotFoundElement: {
+    prototype: HTMLWsPageNotFoundElement;
+    new (): HTMLWsPageNotFoundElement;
+  };
+
   interface HTMLWsRegisterElement extends Components.WsRegister, HTMLStencilElement {}
   var HTMLWsRegisterElement: {
     prototype: HTMLWsRegisterElement;
@@ -169,6 +176,7 @@ declare global {
     'ws-link': HTMLWsLinkElement;
     'ws-login': HTMLWsLoginElement;
     'ws-login-overlay': HTMLWsLoginOverlayElement;
+    'ws-page-not-found': HTMLWsPageNotFoundElement;
     'ws-register': HTMLWsRegisterElement;
     'ws-root': HTMLWsRootElement;
     'ws-text': HTMLWsTextElement;
@@ -222,6 +230,7 @@ declare namespace LocalJSX {
     'onCloseLoginOverlay'?: (event: CustomEvent<any>) => void;
     'onLoggedIn'?: (event: CustomEvent<any>) => void;
   }
+  interface WsPageNotFound extends JSXBase.HTMLAttributes<HTMLWsPageNotFoundElement> {}
   interface WsRegister extends JSXBase.HTMLAttributes<HTMLWsRegisterElement> {
     'history'?: RouterHistory;
     'onLoggedIn'?: (event: CustomEvent<any>) => void;
@@ -243,6 +252,7 @@ declare namespace LocalJSX {
     'ws-link': WsLink;
     'ws-login': WsLogin;
     'ws-login-overlay': WsLoginOverlay;
+    'ws-page-not-found': WsPageNotFound;
     'ws-register': WsRegister;
     'ws-root': WsRoot;
     'ws-text': WsText;
